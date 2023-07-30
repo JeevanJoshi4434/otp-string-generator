@@ -1,0 +1,22 @@
+{
+  "name": "otp-string-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeevanJoshi4434/otp-string-generator.git"
+  },
+  "author": "Jeevan Joshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeevanJoshi4434/otp-string-generator/issues"
+  },
+  "homepage": "https://github.com/JeevanJoshi4434/otp-string-generator#readme",
+  "keywords": [
+  "#otp #stringKey #Crypto #urlKey #cryptography"
+  ]
+}
