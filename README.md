@@ -26,12 +26,12 @@ console.log(otp);
  */
 const ExampleKey1 = Generate.getString(10, false, { _id: "10", email: "user@mail.com" });
 console.log(ExampleKey1);
-// Output: _id=10&email=user@mail.com&key=4cV2JM921B
+// Output: {_id: "10", email: "user@mail.com",_id=10&email=user@mail.com&key=L*Rq@EUoVn}
 
 // Generate another random key string
 const ExampleKey2 = Generate.getString(10, false, { _id: "10", email: "user@mail.com" });
 console.log(ExampleKey2);
-// Output: _id=10&email=user@mail.com&key=L*Rq@EUoVn
+// Output: {_id: "10", email: "user@mail.com",_id=10&email=user@mail.com&key=L*Rq@EUoVn}
 
 // Generate a URL key string with parameters
 
@@ -46,13 +46,13 @@ console.log(ExampleKey2);
  */
 const ExampleKey3 = Generate.getUrlString(10, false, { _id: "10", email: "user@mail.com" }, "www.example.com/verify?", false);
 console.log(ExampleKey3);
-// Output: http://www.example.com/verify??_id=10&email=user@mail.com&key=sLqTg@kGOS
+// Output: { _id: "10", email: "user@mail.com",string:http://www.example.com/verify??_id=10&email=user@mail.com&key=sLqTg@kGOS}
 
 // Generate another URL key string with strictness and HTTPS
 
 const ExampleKey4 = Generate.getUrlString(10, true, { _id: "10", email: "user@mail.com" }, "www.example.com/verify?", true);
 console.log(ExampleKey4);
-// Output: https://www.example.com/verify??_id=10&email=user@mail.com&key=2#k!N%Q^y*
+// Output: { _id: "10", email: "user@mail.com",string:http://www.example.com/verify??_id=10&email=user@mail.com&key=sLqTg@kGOS}
 ```
 
 Other Points:

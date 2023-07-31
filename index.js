@@ -25,7 +25,7 @@ function genOTP(Length){
  * @param more - The `more` parameter is an object that contains additional key-value pairs that you
  * want to include in the generated string. These key-value pairs will be appended to the string in the
  * format `key=value&`.
- * @returns a string.
+ * @returns a Object.
  */
 function genString(Length, Strict, more) {
     if(typeof Strict !== "boolean"){
@@ -60,14 +60,14 @@ function genString(Length, Strict, more) {
         for (let i = 0; i < Length; i++) {
             string += Data[getRandomNumber(0, Data.length - 1)];
         }
-        return string;
+        return stringSplitter(string);
     } else {
         string += 'key=';
         for (let i = 0; i < Length/2; i++) {
             string += Data[getRandomNumber(0, Data.length - 1)];
             string += Data[getRandomNumber(62, Data.length -1)]
         }
-        return string;
+        return stringSplitter(string);
     }
 }
 /**
@@ -85,7 +85,7 @@ function genString(Length, Strict, more) {
  * string.
  * @param https - A boolean value indicating whether the generated URL should use the "https" protocol
  * or not.
- * @returns The function `genUrlString` returns a URL string based on the provided parameters. The
+ * @returns The function `genUrlString` returns a Object based on the provided parameters. The
  * returned URL string will have the format `http://url?queryString` or `https://url?queryString`
  * depending on the value of the `https` parameter.
  */
@@ -129,14 +129,14 @@ function genUrlString(Length, Strict, more,url,https) {
         for (let i = 0; i < Length; i++) {
             string += Data[getRandomNumber(0, Data.length - 1)];
         }
-        return (https ? 'https://' : 'http://') + url + '?' + string;
+        return urlStringSplitter((https ? 'https://' : 'http://') + url + '?' + string);
     } else {
         string += 'key=';
         for (let i = 0; i < Length/2; i++) {
             string += Data[getRandomNumber(0, Data.length - 1)];
             string += Data[getRandomNumber(62, Data.length -1)]
         }
-        return (https ? 'https://' : 'http://') + url + '?' + string;
+        return urlStringSplitter((https ? 'https://' : 'http://') + url + '?' + string);
     }
 }
 
@@ -172,6 +172,41 @@ const getRandomNumber = function (from, to) { // for random number
     const randomNumber = Math.floor(Math.random() * (to - from + 1)) + from;
     return randomNumber;
 }
+
+function stringSplitter(string){
+    const keyValuePairs = string.split('&');
+    const obj = {};
+    keyValuePairs.forEach(keyValuePairs =>{
+        const [key,value] = keyValuePairs.split('=');
+        obj[key] = isNaN(value) ? value : Number(value);
+    });
+    let str = 'string';
+    obj[str] = string; 
+    return obj;
+}
+function urlStringSplitter(newString){
+    const splitString = newString.split('?');
+    let valueAfterQuestionMark;
+    if(splitString.length > 1){
+        valueAfterQuestionMark = splitString[1];
+    }else{
+        valueAfterQuestionMark = null;
+    }
+    if(valueAfterQuestionMark === null){
+        throw new Error('TypeError: Provide a valid url. url not contains anything after ?');
+    }
+    string = valueAfterQuestionMark;
+    const keyValuePairs = string.split('&');
+    const obj = {};
+    keyValuePairs.forEach(keyValuePairs =>{
+        const [key,value] = keyValuePairs.split('=');
+        obj[key] = isNaN(value) ? value : Number(value);
+    });
+    let str = 'string';
+    obj[str] = newString; 
+    return obj;
+}
+
 
 module.exports = {
     getString:genString,
