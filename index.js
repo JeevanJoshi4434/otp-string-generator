@@ -28,6 +28,9 @@ function genOTP(Length){
  * @returns a Object.
  */
 function genString(Length, Strict, more) {
+    if(more.string){
+        throw new Error(`TypeError: 'string' keyword cannot be used in more. It is Reserved as return type.`)
+    }
     if(typeof Strict !== "boolean"){
         throw new Error("TypeError: Strict should be a 'Boolean' parameter.")
     }
@@ -90,6 +93,9 @@ function genString(Length, Strict, more) {
  * depending on the value of the `https` parameter.
  */
 function genUrlString(Length, Strict, more,url,https) {
+    if(more.string){
+        throw new Error(`TypeError: 'string' keyword cannot be used in more. It is Reserved as return type.`)
+    }
     if(typeof Strict !== "boolean"){
         throw new Error("TypeError: Strict should be a 'Boolean' parameter.")
     }
